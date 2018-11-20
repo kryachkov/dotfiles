@@ -40,7 +40,7 @@ Plug 'elixir-lang/vim-elixir'
 
 Plug 'tpope/vim-rails'
 Plug 'jgdavey/tslime.vim'
-Plug 'kopischke/vim-fetch'
+Plug 'wsdjeg/vim-fetch'
 Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'hashivim/vim-terraform'
@@ -217,3 +217,7 @@ cnoreabbrev AG Ack
 
 set undodir=~/.vim/undo/
 set undofile
+
+" Allow project specific .vimrc's
+set exrc
+set secure
