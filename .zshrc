@@ -96,9 +96,10 @@ alias tmk="tmux kill-session -t $1"
 alias highlight="highlight --out-format=ansi"
 
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/.cargo/bin" # Add RVM to PATH for scripting
-export PATH=$HOME/Applications/graalvm-ee-1.0.0-rc3/Contents/Home/bin:$PATH
+# export PATH=$HOME/Applications/graalvm-ee-1.0.0-rc12/Contents/Home/bin:$PATH
 export PATH="/usr/local/opt/llvm@4/bin:$PATH"
 export PATH=$HOME/.cache/rebar3/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 bindkey \^U backward-kill-line
 
@@ -114,6 +115,7 @@ alias cdad="cd $CURRENT_PROJECT/admin"
 alias gcopro="gco production"
 alias gcostg="gco staging"
 alias hbprpro="hub pull-request -b production"
+alias hbpr="hub pull-request"
 alias grbpro="git rebase production"
 
 fvim() {
