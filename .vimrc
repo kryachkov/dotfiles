@@ -14,7 +14,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-db'
 
 Plug 'tpope/vim-markdown'
-Plug 'leshill/vim-json'
 
 Plug 'slim-template/vim-slim'
 Plug 'thoughtbot/vim-rspec'
@@ -30,7 +29,8 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'Townk/vim-autoclose'
 
 " Coloschemes
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'danielwe/base16-vim'
 
 Plug 'mileszs/ack.vim'
 
@@ -49,6 +49,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'airblade/vim-gitgutter'
+Plug 'elzr/vim-json'
+
+Plug '~/go/src/golang.org/x/lint/misc/vim'
 
 call plug#end()
 
@@ -107,6 +110,7 @@ autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs :%s/\s\
 autocmd BufNewFile,BufRead *.txt setfiletype text
 autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile setfiletype ruby
 autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js setlocal wrap linebreak "nolist
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " Statusline
 if has("statusline") && !&cp
@@ -152,6 +156,7 @@ nnoremap <silent> <F2> <ESC>:A<CR>
 nnoremap <silent> <F4> <ESC>:e#<CR>
 nnoremap <silent> <F7> :w\|:call RunNearestSpec()<CR>
 nnoremap <silent> <F8> :w\|:call RunCurrentSpecFile()<CR>
+nnoremap <silent> <F11> :w\|:call Send_to_Tmux("cdro;./bin/styles rubocop;cd - > /dev/null\n")<CR>
 map <F9> <Plug>(easymotion-bd-f)
 map <F10> <Plug>(easymotion-bd-w)
 map <F14> <Plug>GitGutterPrevHunk
