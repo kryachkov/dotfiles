@@ -7,11 +7,9 @@ Plug 'kien/ctrlp.vim'
 
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rvm'
 Plug 'vim-ruby/vim-ruby'
 
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-db'
 
 Plug 'tpope/vim-markdown'
 
@@ -121,10 +119,6 @@ if has("statusline") && !&cp
   " set statusline=%{hostname()}:
   set statusline=%f\ %m\ %r
 
-  " Add rvm
-  " if exists('$rvm_path')
-  "   set statusline+=%{rvm#statusline()}
-  " endif
   " Add fugitive
   set statusline+=%{fugitive#statusline()}
 
