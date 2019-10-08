@@ -117,6 +117,7 @@ alias gcostg="gco staging"
 alias hbprpro="hub pull-request -b production"
 alias hbpr="hub pull-request"
 alias grbpro="git rebase production"
+alias rg="rg --hidden -i"
 
 fvim() {
   vim $(fzf)
@@ -129,6 +130,7 @@ fcat() {
 hgssh() {
   SSH_TARGET=$1.$CORPORATE_DOMAIN
   IP=$(dig +short $SSH_TARGET)
+  echo "$SSH_TARGET resolved to $IP"
   ssh -i ~/.ssh/hg_rsa $IP
 }
 

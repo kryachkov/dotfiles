@@ -1,4 +1,5 @@
 set nocompatible
+set nomodeline
 filetype off
 
 call plug#begin()
@@ -27,8 +28,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'Townk/vim-autoclose'
 
 " Coloschemes
-" Plug 'chriskempson/base16-vim'
-Plug 'danielwe/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 Plug 'mileszs/ack.vim'
 
@@ -72,7 +72,7 @@ set shiftwidth=2
 
 set list "display unprintable characters
 set backspace=indent,eol,start
-set listchars=tab:»·,nbsp:·,trail:·,extends:>,precedes:<
+set listchars=tab:»·,nbsp:·,trail:·,extends:>,precedes:<,space:·
 
 set number
 set rnu
@@ -102,12 +102,12 @@ set splitright
 "set autoindent
 
 " Automatically removing all trailing whitespace
-autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs :%s/\s\+$//e
+autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs,*.yml,*.yaml :%s/\s\+$//e
 
 " File types autodetection
 autocmd BufNewFile,BufRead *.txt setfiletype text
 autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile setfiletype ruby
-autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js setlocal wrap linebreak "nolist
+autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js,yaml,yml setlocal wrap linebreak "nolist
 autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " Statusline
@@ -191,7 +191,7 @@ let g:markdown_fenced_languages = ['html', 'javascript', 'ruby', 'bash=sh', 'sql
 
 map <Leader>b :buffers<CR>:buffer<Space>
 
-set colorcolumn=107
+set colorcolumn=80,107
 
 set clipboard=unnamed
 
