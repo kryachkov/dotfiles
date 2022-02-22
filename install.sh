@@ -2,19 +2,30 @@
 
 ROOT_PATH=`pwd -P`
 
-echo "Linking .gitconfig..."
-ln -nfs $ROOT_PATH/.gitconfig $HOME/.gitconfig
-echo "Done"
+echo "Link .gitconfig (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  ln -nfs $ROOT_PATH/.gitconfig $HOME/.gitconfig
+  echo "Done"
+fi
 
-echo "Linking .tmux.conf..."
-ln -nfs $ROOT_PATH/.tmux.conf $HOME/.tmux.conf
-echo "Done"
+echo "Link .tmux.conf (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  ln -nfs $ROOT_PATH/.tmux.conf $HOME/.tmux.conf
+  echo "Done"
+fi
 
-echo "Linking .zshrc..."
-ln -nfs $ROOT_PATH/.zshrc $HOME/.zshrc
-echo "Done"
+echo "Link .zshrh (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  ln -nfs $ROOT_PATH/.zshrc $HOME/.zshrc
+  echo "Done"
+fi
 
 echo -n "Bootstrap vim (y/n)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   echo "Installing plug..."
