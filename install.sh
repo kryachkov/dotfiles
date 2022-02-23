@@ -26,8 +26,6 @@ fi
 echo -n "Bootstrap vim (y/n)? "
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-read answer
-if echo "$answer" | grep -iq "^y" ;then
   echo "Installing plug..."
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
