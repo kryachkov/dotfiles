@@ -24,7 +24,6 @@ in
 
   home.packages = [
     unstable.awscli2
-    unstable.firefox
     unstable.htop
     unstable.terraform
     unstable.tmux
@@ -65,5 +64,9 @@ in
     package = unstable.git;
     userEmail = "andre.falk@tutanota.com";
     userName = "André Falk";
+  };
+
+  programs.firefox = {
+    enable = true;
   };
 }
