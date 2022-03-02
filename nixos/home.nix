@@ -22,12 +22,10 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = [
-    unstable.awscli2
-    unstable.htop
-    unstable.terraform
-    unstable.tmux
-    unstable.vim
+  home.packages = with pkgs; [
+    htop
+    tmux
+    vim
   ];
 
   home.sessionVariables = {
@@ -49,10 +47,9 @@ in
     package = unstable.kitty;
     font = {
       name = "Inconsolata";
-      package = unstable.inconsolata;
+      package = pkgs.inconsolata;
       size = 16;
     };
-    # theme = "Solarized Light";
     settings = {
       enable_audio_bell = false;
       copy_on_select = true;
@@ -61,7 +58,6 @@ in
 
   programs.git = {
     enable = true;
-    package = unstable.git;
     userEmail = "andre.falk@tutanota.com";
     userName = "André Falk";
   };
