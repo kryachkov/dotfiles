@@ -12,18 +12,27 @@ fi
 echo "Link .tmux.conf (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
+  echo "Installing tpm"
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   ln -nfs $ROOT_PATH/.tmux.conf $HOME/.tmux.conf
   echo "Done"
 fi
 
-echo "Link .zshrh (y/n)?"
+echo "Link .zshrc (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   ln -nfs $ROOT_PATH/.zshrc $HOME/.zshrc
   echo "Done"
 fi
 
-echo -n "Bootstrap vim (y/n)? "
+echo "Link Brewfile (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  ln -nfs $ROOT_PATH/Brewfile $HOME/Brewfile
+  echo "Done"
+fi
+
+echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   echo "Installing plug..."
@@ -33,6 +42,10 @@ if echo "$answer" | grep -iq "^y" ;then
 
   echo "Linking .vimrc..."
   ln -nfs $ROOT_PATH/.vimrc $HOME/.vimrc
+  echo "Done"
+
+  echo "Creating undo directory"
+  mkdir -p $HOME/.vim/undo
   echo "Done"
 
   echo "Installing plugins..."
