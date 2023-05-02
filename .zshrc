@@ -1,24 +1,39 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/akryachkov/.oh-my-zsh
+ZSH_DISABLE_COMPFIX="true"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="minimal"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -30,6 +45,9 @@ ZSH_THEME="minimal"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -39,24 +57,27 @@ ZSH_THEME="minimal"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras github)
+plugins=(git kubectl)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -71,71 +92,38 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Base16 Shell
 DOTFILES_ROOT=$HOME/.config/dotfiles
 [ -f $DOTFILES_ROOT/.env.secrets ] && source $DOTFILES_ROOT/.env.secrets
 
-alias zshconfig="vim ~/.zshrc"
-alias zshsource="source ~/.zshrc"
-
 export LC_ALL="en_US.UTF-8"
 export EDITOR="vim"
-alias pubkey='cat ~/.ssh/id_rsa.pub | pbcopy'
-alias mux="tmuxinator $1"
-alias tml="tmux list-sessions"
-alias tma="tmux -2 attach -t $1"
-alias tmk="tmux kill-session -t $1"
-alias highlight="highlight --out-format=ansi"
-
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.cargo/bin" # Add RVM to PATH for scripting
-# export PATH=$HOME/Applications/graalvm-ee-1.0.0-rc12/Contents/Home/bin:$PATH
-export PATH="/usr/local/opt/llvm@4/bin:$PATH"
-export PATH=$HOME/.cache/rebar3/bin:$PATH
-export PATH=$HOME/go/bin:$PATH
-
-bindkey \^U backward-kill-line
-
-alias mc="mc -S modarin256 $1"
-alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
-alias readme="less README.md"
-alias ovpnc="osascript -e 'tell application \"/Applications/Tunnelblick.app\"' -e 'connect \"hg-1194\"' -e 'end tell'"
-alias ovpnd="osascript -e 'tell application \"/Applications/Tunnelblick.app\"' -e 'disconnect all' -e 'end tell'"
-alias cdro="cd $CURRENT_PROJECT"
-alias cdco="cd $CURRENT_PROJECT/core"
-alias cdap="cd $CURRENT_PROJECT/api"
-alias cdad="cd $CURRENT_PROJECT/admin"
-alias gcopro="gco production"
-alias gcostg="gco staging"
-alias hbprpro="hub pull-request -b production"
-alias hbpr="hub pull-request"
-alias grbpro="git rebase production"
-alias rg="rg --hidden -i"
+export GPG_TTY=$(tty)
+export DOCKER_BUILDKIT=1
 
 fvim() {
   vim $(fzf)
 }
 
-fcat() {
-  cat $(fzf)
+randompass() {
+  ruby -rsecurerandom -e 'print SecureRandom.base64(32)'
 }
 
-hgssh() {
-  SSH_TARGET=$1.$CORPORATE_DOMAIN
-  IP=$(dig +short $SSH_TARGET)
-  echo "$SSH_TARGET resolved to $IP"
-  ssh -i ~/.ssh/hg_rsa $IP
-}
+alias hbpr="hub pull-request"
+alias mc="mc --nocolor"
 
-# Base16 Shell
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+bindkey -e
+bindkey \^U backward-kill-line
 
-bindkey '^S' history-incremental-search-forward
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH" >> ~/.zshrc
