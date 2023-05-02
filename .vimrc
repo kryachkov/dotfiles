@@ -15,8 +15,8 @@ Plug 'slim-template/vim-slim'
 Plug 'thoughtbot/vim-rspec'
 
 " Snippets support
-Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
@@ -86,9 +86,10 @@ set splitright
 autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs,*.yml,*.yaml :%s/\s\+$//e
 
 autocmd BufNewFile,BufRead *.txt setfiletype text
-autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile setfiletype ruby
+autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile,Brewfile setfiletype ruby
 autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js,yaml,yml setlocal wrap linebreak
+" autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 set ttimeoutlen=100 " decrease timeout for faster insert with 'O' "
 set scrolloff=2
