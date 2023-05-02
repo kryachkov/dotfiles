@@ -1,7 +1,10 @@
-[user]
-	name = Andrey Kryachkov
-	email = kryachkov.andrey@gmail.com
-  signingkey = E9BF8B04
+[diff "sopsdiffer"]
+	textconv = sops -d
+# Moved to ~/.config/git/config
+# [user]
+#   name =
+#   email =
+#   signingkey =
 [mergetool]
 	keepBackup = true
 [push]
@@ -11,6 +14,8 @@
 	excludesfile = /Users/akryachkov/.gitignore_global
 [diff]
 	tool = vimdiff
+[diff "ansible-vault"]
+  textconv = "ansible-vault view"
 [color]
 	ui = true
   interactive = true
@@ -22,10 +27,11 @@
 	rebase = true
 [commit]
 	gpgsign = true
-
 [alias]
   branch-name = "!git rev-parse --abbrev-ref HEAD"
   publish = "!git push -u origin $(git branch-name)"
 	please = push --force-with-lease
 [status]
 	relativePaths = true
+[init]
+	defaultBranch = master
