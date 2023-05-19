@@ -16,6 +16,7 @@ tap "homebrew/cask-versions"
   jo
   jq
   kubectl
+  kubent
   lbzip2
   mas
   postgresql@12
@@ -28,6 +29,7 @@ tap "homebrew/cask-versions"
   terraform
   tmux
   tree
+  v8@3.15
   vim
   watch
   yq
