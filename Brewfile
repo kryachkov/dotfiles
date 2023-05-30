@@ -22,6 +22,7 @@ tap "homebrew/cask-versions"
   postgresql@12
   python
   reattach-to-user-namespace
+  redis
   ripgrep
   shntool
   siege
