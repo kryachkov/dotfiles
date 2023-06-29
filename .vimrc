@@ -83,7 +83,7 @@ set wildmode=list:longest,full
 set splitbelow
 set splitright
 
-autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs,*.yml,*.yaml :%s/\s\+$//e
+autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs,*.yml,*.yaml,*.tf :%s/\s\+$//e
 
 autocmd BufNewFile,BufRead *.txt setfiletype text
 autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile,Brewfile setfiletype ruby
@@ -159,5 +159,5 @@ set secure
 
 let g:snipMate = { 'snippet_version' : 1 }
 set termguicolors
-set background=light
+set background=dark
 colorscheme solarized8

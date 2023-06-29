@@ -1,8 +1,10 @@
 tap "homebrew/cask-versions"
 
 %w[
+  age
   argocd
   awscli
+  azure-cli
   cuetools
   curl
   flac
@@ -15,6 +17,7 @@ tap "homebrew/cask-versions"
   hub
   jo
   jq
+  kind
   kubectl
   kubent
   lbzip2
@@ -43,6 +46,7 @@ tap "homebrew/cask-versions"
   kitty
   lastpass
   slack
+  sony-ps-remote-play
   steam
   telegram
   transmission
