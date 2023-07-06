@@ -1,4 +1,4 @@
-filetype off
+set nocompatible
 
 call plug#begin()
 Plug 'kien/ctrlp.vim'
@@ -50,9 +50,6 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
-filetype plugin indent on
-syntax enable
-
 set rnu
 set nu
 
@@ -89,23 +86,17 @@ autocmd BufNewFile,BufRead *.txt setfiletype text
 autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile,Brewfile setfiletype ruby
 autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js,yaml,yml setlocal wrap linebreak
-" autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 set ttimeoutlen=100 " decrease timeout for faster insert with 'O' "
 set scrolloff=2
 set shell=/bin/sh
-" set wildignore+=*/tmp/*,*/coverage/*,*/log/*,*/bin/*,tags,*/spec/reports/*,*/.git/*,*/app/assets/images/*,*/public/system/*,*/public/assets/*,bin/*
-set wildignore+=*/tmp/*,*/coverage/*,*/log/*,*/bin/*,tags,*/spec/reports/*,*/.git/*,*/app/assets/images/*,*/public/system/*,*/public/assets/*,bin/*,*/web/node_modules/*,*/mobile/node_modules/*
+" "" set wildignore+=*/tmp/*,*/coverage/*,*/log/*,*/bin/*,tags,*/spec/reports/*,*/.git/*,*/app/assets/images/*,*/public/system/*,*/public/assets/*,bin/*
+"set wildignore+=*/tmp/*,*/coverage/*,*/log/*,*/bin/*,tags,*/spec/reports/*,*/.git/*,*/app/assets/images/*,*/public/system/*,*/public/assets/*,bin/*,*/web/node_modules/*,*/mobile/node_modules/*
 
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
 
 call camelcasemotion#CreateMotionMappings('<leader>')
-
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
 
 set mouse=""
 let g:netrw_liststyle=3
