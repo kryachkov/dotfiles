@@ -5,22 +5,20 @@
 #   name =
 #   email =
 #   signingkey =
+[merge]
+  tool = nvimdiff
 [mergetool]
 	keepBackup = true
 [push]
 	default = simple
 [core]
-	editor = vim
-[diff]
-	tool = vimdiff
+	editor = nvim
 [diff "ansible-vault"]
   textconv = "ansible-vault view"
 [color]
 	ui = true
   interactive = true
   diff = true
-[merge]
-	tool = vimdiff
 [pull]
 	ff = only
 	rebase = true
