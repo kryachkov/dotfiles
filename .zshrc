@@ -83,11 +83,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,12 +105,11 @@ DOTFILES_ROOT=$HOME/.config/dotfiles
 [ -f $DOTFILES_ROOT/.env.secrets ] && source $DOTFILES_ROOT/.env.secrets
 
 export LC_ALL="en_US.UTF-8"
-export EDITOR="vim"
 export GPG_TTY=$(tty)
 export DOCKER_BUILDKIT=1
 
 fvim() {
-  vim $(fzf)
+  nvim "$(fzf)"
 }
 
 randompass() {
@@ -119,6 +118,7 @@ randompass() {
 
 alias hbpr="hub pull-request"
 alias mc="mc --nocolor"
+alias vim="nvim"
 
 bindkey -e
 bindkey \^U backward-kill-line
@@ -126,4 +126,7 @@ bindkey \^U backward-kill-line
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH" >> ~/.zshrc
+# export PATH="/usr/local/sbin:$PATH" >> ~/.zshrc
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}["
+export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}●%{$reset_color%}]%{$reset_color%} "

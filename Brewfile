@@ -36,11 +36,13 @@ tap "homebrew/cask-versions"
   v8@3.15
   vim
   watch
+  wireguard-tools
   yq
 ].map { |i| brew i }
 
 %w[
   amethyst
+  anki
   docker
   firefox-developer-edition
   kitty
@@ -49,6 +51,7 @@ tap "homebrew/cask-versions"
   sony-ps-remote-play
   steam
   telegram
+  the-unarchiver
   transmission
   tunnelblick
   tutanota
@@ -56,8 +59,11 @@ tap "homebrew/cask-versions"
   vlc
   vox
   xld
+  yubico-yubikey-manager
 ].map { |i| cask i }
 
 
 mas "amphetamine", id: 937984704
+mas "microsoft-remote-desktop", id: 1295203466
 mas "pages", id: 409201541
+mas "wireguard", id: 1451685025

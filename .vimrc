@@ -84,6 +84,7 @@ autocmd BufWritePre *.rb,*.erb,*.rake,*.slim,*.clj,*.js,*.erl,*.ex,*.exs,*.yml,*
 
 autocmd BufNewFile,BufRead *.txt setfiletype text
 autocmd BufNewFile,BufRead Gemfile,Guardfile,Vagrantfile,Procfile,Rakefile,Brewfile setfiletype ruby
+autocmd BufNewFile,BufRead *.yaml.gotmpl setfiletype yaml
 autocmd BufNewFile,BufRead Dockerfile* setfiletype dockerfile
 autocmd FileType text,markdown,html,xhtml,eruby,asc,slim,js,yaml,yml setlocal wrap linebreak
 
