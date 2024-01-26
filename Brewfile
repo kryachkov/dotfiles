@@ -45,6 +45,7 @@ tap "homebrew/cask-versions"
   anki
   docker
   firefox-developer-edition
+  keepassxc
   kitty
   lastpass
   slack

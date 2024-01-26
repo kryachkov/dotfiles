@@ -116,6 +116,10 @@ randompass() {
   ruby -rsecurerandom -e 'print SecureRandom.base64(32)'
 }
 
+randomkeepass() {
+  keepassxc-cli generate -lUnsL 64 | tr -d '\n'
+}
+
 alias hbpr="hub pull-request"
 alias mc="mc --nocolor"
 alias vim="nvim"
