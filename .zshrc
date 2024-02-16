@@ -123,6 +123,8 @@ randomkeepass() {
 alias hbpr="hub pull-request"
 alias mc="mc --nocolor"
 alias vim="nvim"
+alias tmn="tmux new"
+alias tml="tmux list-sessions"
 
 bindkey -e
 bindkey \^U backward-kill-line
