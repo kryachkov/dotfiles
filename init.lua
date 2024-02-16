@@ -168,7 +168,9 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
     'ansiblels',
-    -- 'groovyls',
+    'bashls',
+    'rubocop',
+    'marksman',
     'pyright',
     'terraformls',
     'yamlls'
@@ -178,7 +180,9 @@ require('mason-lspconfig').setup({
   },
 })
 
-require('lspconfig').yamlls.setup({
+local lspconfig = require('lspconfig')
+
+lspconfig.yamlls.setup({
   settings = {
     yaml = {
       schemas = {
@@ -189,4 +193,8 @@ require('lspconfig').yamlls.setup({
   }
 })
 
-lsp_zero.setup()
+lspconfig.rubocop.setup({
+  init_options = {
+    safeAutocorrect = false,
+  }
+})
