@@ -88,7 +88,7 @@ vim.opt.cursorline = true -- highlight current line
 vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '80,107'
-vim.opt.background = 'light'
+vim.opt.background = 'dark'
 
 -- persistent undo
 vim.opt.undodir = '/Users/andfalk/.local/share/nvim/undo'
@@ -153,7 +153,8 @@ nmap('<F4>', '<CMD>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>')
 imap('<F4>', '<CMD>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>')
 nmap('<F5>', '<CMD>%!black --stdin-filename % -q - 2>/dev/null<CR>')
 
-vim.cmd('colorscheme NeoSolarized')
+-- vim.cmd('colorscheme NeoSolarized')
+vim.cmd('colorscheme habamax')
 
 local lsp_zero = require('lsp-zero')
 
