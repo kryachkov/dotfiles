@@ -16,21 +16,30 @@ require("lazy").setup({
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     dependencies = {
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
-      {'neovim/nvim-lspconfig'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/nvim-cmp'},
-      {'L3MON4D3/LuaSnip'},
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'neovim/nvim-lspconfig' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/nvim-cmp' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-buffer' },
     }
   },
 
   {
-    "overcache/NeoSolarized",
-    dependencies = {
-      "tjdevries/colorbuddy.nvim",
+    'L3MON4D3/LuaSnip',
+    dependenies = {
+      'rafamadriz/friendly-snippets',
     }
   },
+
+  -- {
+  --   "overcache/NeoSolarized",
+  --   dependencies = {
+  --     "tjdevries/colorbuddy.nvim",
+  --   }
+  -- },
 
   "rstacruz/vim-closer",
 
@@ -44,7 +53,8 @@ require("lazy").setup({
   },
 
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.5',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'BurntSushi/ripgrep'
@@ -68,23 +78,23 @@ vim.g.mapleader = ' '
 
 -- Main config
 vim.opt.clipboard = 'unnamed' -- yank goes to clipboard
-vim.opt.number = true -- display line numbers
-vim.opt.rnu = true -- relative line numbers
-vim.opt.autoindent = true -- copy indent from prev line
-vim.opt.tabstop = 2 -- set tab to 2 spaces
-vim.opt.shiftwidth = 2 -- set '>>' and '<<' spacing indent
-vim.opt.ignorecase = true -- ignore case in search
-vim.opt.hlsearch = true -- highlight all search matches
-vim.opt.smartcase = true -- pay attention to case when caps are used
-vim.opt.incsearch = true -- show search results as I type
-vim.opt.ttimeoutlen = 100 -- decrease timeout for faster insert with 'O'
-vim.opt.ruler = true -- show row and column in footer
-vim.opt.scrolloff = 2 -- minimum lines above/below cursor
-vim.opt.laststatus = 2 -- always show status bar
-vim.opt.expandtab = true -- use spaces instead of tabs
+vim.opt.number = true         -- display line numbers
+vim.opt.rnu = true            -- relative line numbers
+vim.opt.autoindent = true     -- copy indent from prev line
+vim.opt.tabstop = 2           -- set tab to 2 spaces
+vim.opt.shiftwidth = 2        -- set '>>' and '<<' spacing indent
+vim.opt.ignorecase = true     -- ignore case in search
+vim.opt.hlsearch = true       -- highlight all search matches
+vim.opt.smartcase = true      -- pay attention to case when caps are used
+vim.opt.incsearch = true      -- show search results as I type
+vim.opt.ttimeoutlen = 100     -- decrease timeout for faster insert with 'O'
+vim.opt.ruler = true          -- show row and column in footer
+vim.opt.scrolloff = 2         -- minimum lines above/below cursor
+vim.opt.laststatus = 2        -- always show status bar
+vim.opt.expandtab = true      -- use spaces instead of tabs
 vim.opt.listchars = 'tab:»·,nbsp:·,trail:·,extends:>,precedes:<'
-vim.opt.list = true -- display unprintable characters
-vim.opt.cursorline = true -- highlight current line
+vim.opt.list = true           -- display unprintable characters
+vim.opt.cursorline = true     -- highlight current line
 vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '80,107'
@@ -149,18 +159,40 @@ nmap('<Leader>f', '<CMD>Telescope live_grep<CR>')
 nmap('<Leader>p', '<CMD>Telescope find_files<CR>')
 nmap('<F6>', '<CMD>noh<CR>')
 imap('<F6>', '<CMD>noh<CR>')
-nmap('<F7>', '<CMD>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>')
-imap('<F7>', '<CMD>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>')
+nmap('<F7>', '<CMD>LspStop<CR>')
+imap('<F7>', '<CMD>LspStop<CR>')
+nmap('<F8>', '<CMD>LspStart<CR>')
+imap('<F8>', '<CMD>LspStart<CR>')
 
--- vim.cmd('colorscheme NeoSolarized')
 vim.cmd('colorscheme habamax')
+-- vim.cmd('colorscheme darkblue')
+
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+local cmp_format = require('lsp-zero').cmp_format()
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
+cmp.setup({
+  sources = {
+    { name = "buffer" },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp_action.luasnip_jump_forward(),
+    ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+  }),
+  --- (Optional) Show source name in completion menu
+  formatting = cmp_format,
+})
 
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
+  lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 require('mason').setup({})
@@ -168,6 +200,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'ansiblels',
     'bashls',
+    'lua_ls',
     'rubocop',
     'marksman',
     'pyright',
