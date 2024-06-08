@@ -104,6 +104,8 @@ vim.opt.background = 'dark'
 vim.opt.undodir = '/Users/andfalk/.local/share/nvim/undo'
 vim.opt.undofile = true
 
+-- vim.g.sneak = 1
+
 -- Auto-removal of trailing whitespaces on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = { '*' },
@@ -116,7 +118,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { 'seed_jenkins', 'Jenkinsfile' },
+  pattern = { 'seed_jenkins', 'Jenkinsfile*' },
   command = 'setfiletype groovy'
 })
 
@@ -165,6 +167,7 @@ nmap('<F8>', '<CMD>LspStart<CR>')
 imap('<F8>', '<CMD>LspStart<CR>')
 
 vim.cmd('colorscheme habamax')
+vim.cmd('highlight Normal guibg=none')
 -- vim.cmd('colorscheme darkblue')
 
 local cmp = require('cmp')
@@ -200,7 +203,9 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'ansiblels',
     'bashls',
+    'dockerls',
     'lua_ls',
+    'gopls',
     'rubocop',
     'marksman',
     'pyright',
@@ -218,8 +223,8 @@ lspconfig.yamlls.setup({
   settings = {
     yaml = {
       schemas = {
-        ["https://json.schemastore.org/chart.json"] = "Chart.yaml",
-        ["https://json.schemastore.org/helmfile.json"] = "helmfile.yaml",
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/helmfile.json"] = "helmfile.yaml",
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/hchart.json"] = "Chart.yaml"
       }
     }
   }
