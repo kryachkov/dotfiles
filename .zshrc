@@ -132,6 +132,12 @@ alias ncmpd="ncmpcpp"
 
 alias gswma="git switch master"
 
+az() {
+  podman run -it --rm \
+    -v "${HOME}/.azure:/root/.azure:Z" \
+    mcr.microsoft.com/azure-cli:2.61.0 az "$@"
+}
+
 bindkey -e
 bindkey \^U backward-kill-line
 
