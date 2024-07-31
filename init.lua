@@ -123,11 +123,6 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   command = 'setfiletype groovy'
 })
 
--- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
---   pattern = { '*.py' },
---   command = ':%!black --stdin-filename % -q - 2>/dev/null',
--- })
-
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { '*.py' },
   command = 'set colorcolumn=88,107'
