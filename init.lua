@@ -72,6 +72,7 @@ require("lazy").setup({
   'tpope/vim-surround',
   'justinmk/vim-sneak',
   'nvim-treesitter/nvim-treesitter',
+  'wsdjeg/vim-fetch',
 }, opts)
 
 -- <Space> is <Leader>
