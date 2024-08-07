@@ -32,6 +32,14 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link foot.ini (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  mkdir -p $HOME/.config/foot
+  ln -nfs $ROOT_PATH/foot.ini $HOME/.config/foot/foot.ini
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
