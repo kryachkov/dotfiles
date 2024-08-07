@@ -48,6 +48,14 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link swaylock config (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  mkdir -p $HOME/.config/swaylock
+  ln -nfs $ROOT_PATH/swaylock_config $HOME/.config/swaylock/config
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
