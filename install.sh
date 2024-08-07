@@ -40,6 +40,14 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link sway config (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  mkdir -p $HOME/.config/sway
+  ln -nfs $ROOT_PATH/sway_config $HOME/.config/sway/config
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
