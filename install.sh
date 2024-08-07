@@ -56,6 +56,14 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link mpd config (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  mkdir -p $HOME/.config/mpd
+  ln -nfs $ROOT_PATH/mpd.conf $HOME/.config/mpd/mpd.conf
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
