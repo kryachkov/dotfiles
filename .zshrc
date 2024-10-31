@@ -135,7 +135,35 @@ alias gswma="git switch master"
 az() {
   podman run -it --rm \
     -v "${HOME}/.azure:/root/.azure:Z" \
-    mcr.microsoft.com/azure-cli:2.61.0 az "$@"
+    mcr.microsoft.com/azure-cli:2.64.0 az "$@"
+}
+
+OPENTOFU_VERSION=1.8.0
+
+aztofu() {
+  podman run -it --rm \
+    --workdir=/srv/workspace \
+    -v "${HOME}/.azure:/root/.azure:Z" \
+    -v "$(pwd):/srv/workspace:Z" \
+    tofu-azure:$OPENTOFU_VERSION "$@"
+}
+
+ggtofu() {
+  podman run -it --rm \
+    --workdir=/srv/workspace \
+    -v "${HOME}/Projects/git-gud/aws-credentials:/root/.aws/credentials:Z" \
+    -v "$(pwd):/srv/workspace:Z" \
+    ghcr.io/opentofu/opentofu:$OPENTOFU_VERSION "$@"
+}
+
+azghtofu() {
+  podman run -it --rm \
+    --workdir=/srv/workspace \
+    -v "${HOME}/.azure:/root/.azure:Z" \
+    -v "$(pwd):/srv/workspace:Z" \
+    -e GITHUB_TOKEN="$GITHUB_TOKEN" \
+    -e GITHUB_USERNAME="$GITHUB_USERNAME" \
+    tofu-azure:$OPENTOFU_VERSION "$@"
 }
 
 bindkey -e
