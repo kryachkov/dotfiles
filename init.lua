@@ -83,6 +83,7 @@ vim.opt.clipboard = 'unnamed' -- yank goes to clipboard
 vim.opt.number = true         -- display line numbers
 vim.opt.rnu = true            -- relative line numbers
 vim.opt.autoindent = true     -- copy indent from prev line
+vim.opt.smartindent = true
 vim.opt.tabstop = 2           -- set tab to 2 spaces
 vim.opt.shiftwidth = 2        -- set '>>' and '<<' spacing indent
 vim.opt.ignorecase = true     -- ignore case in search
