@@ -244,4 +244,10 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Control+q exec swaylock
 
+for_window [app_id="sdl-freerdp"] {
+    floating disable
+}
+
+font pango:Terminus 11
+
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
