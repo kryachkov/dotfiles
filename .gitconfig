@@ -47,3 +47,5 @@
 
 [merge]
     conflictstyle = zdiff3
+[credential]
+  helper = store --file ~/.git-credentials
