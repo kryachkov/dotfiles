@@ -130,6 +130,11 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   command = 'set colorcolumn=88,107'
 })
 
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*.go' },
+  command = 'set noexpandtab | set tabstop=4 | set shiftwidth=4'
+})
+
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
