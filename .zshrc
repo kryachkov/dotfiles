@@ -141,7 +141,6 @@ randomkeepass() {
 }
 
 alias hbpr="hub pull-request"
-alias mc="mc --nocolor"
 alias vim="nvim"
 
 alias tmn="tmux new"
