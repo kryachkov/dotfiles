@@ -157,7 +157,7 @@ az() {
     mcr.microsoft.com/azure-cli:2.64.0 az "$@"
 }
 
-OPENTOFU_VERSION=1.8.0
+OPENTOFU_VERSION=1.8.7
 
 aztofu() {
   podman run -it --rm \
