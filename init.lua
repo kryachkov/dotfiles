@@ -131,7 +131,7 @@ vim.opt.colorcolumn = '80,107'
 vim.opt.background = 'dark'
 
 -- persistent undo
-vim.opt.undodir = '/Users/andfalk/.local/share/nvim/undo'
+vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo'
 vim.opt.undofile = true
 
 -- vim.g.sneak = 1
