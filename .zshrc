@@ -193,6 +193,10 @@ azghtofu() {
 bindkey -e
 bindkey \^U backward-kill-line
 
+if which nvim > /dev/null 2>&1; then
+  export MANPAGER="nvim +Man!"
+fi
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
