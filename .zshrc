@@ -156,7 +156,11 @@ alias ncmpd="ncmpcpp"
 
 alias gswma="git switch master"
 alias calc="bc -l"
-alias kdn="kubectl debug nodes/$(kubectl get nodes --no-headers | cut -d" " -f1 | sort -R | head -n1) -it --image fedora"
+
+kdn() {
+  kubectl debug nodes/$(kubectl get nodes --no-headers | cut -d" " -f1 | sort -R | head -n1) \
+    -it --image fedora
+}
 
 az() {
   podman run -it --rm \
