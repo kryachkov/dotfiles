@@ -106,7 +106,12 @@ require("lazy").setup({
 vim.g.mapleader = ' '
 
 -- Main config
-vim.opt.clipboard = 'unnamed' -- yank goes to clipboard
+-- yank goes to clipboard
+if vim.loop.os_uname().sysname == "Linux" then
+  vim.opt.clipboard = 'unnamedplus'
+elseif vim.loop.os_uname().sysname == "Darwin" then
+  vim.opt.clipboard = 'unnamed'
+end
 vim.opt.number = true         -- display line numbers
 vim.opt.rnu = true            -- relative line numbers
 vim.opt.autoindent = true     -- copy indent from prev line
