@@ -34,12 +34,12 @@ require("lazy").setup({
     }
   },
 
-  -- {
-  --   "overcache/NeoSolarized",
-  --   dependencies = {
-  --     "tjdevries/colorbuddy.nvim",
-  --   }
-  -- },
+  {
+    "overcache/NeoSolarized",
+    dependencies = {
+      "tjdevries/colorbuddy.nvim",
+    }
+  },
 
   "rstacruz/vim-closer",
 
@@ -100,7 +100,11 @@ require("lazy").setup({
   'justinmk/vim-sneak',
   'nvim-treesitter/nvim-treesitter',
   'wsdjeg/vim-fetch',
-}, opts)
+}, {
+  rocks = {
+    enabled = false
+  }
+})
 
 -- <Space> is <Leader>
 vim.g.mapleader = ' '
@@ -133,7 +137,6 @@ vim.opt.cursorline = true     -- highlight current line
 vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '80,107'
-vim.opt.background = 'dark'
 
 -- persistent undo
 vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo'
@@ -201,9 +204,10 @@ imap('<F7>', '<CMD>LspStop<CR>')
 nmap('<F8>', '<CMD>LspStart<CR>')
 imap('<F8>', '<CMD>LspStart<CR>')
 
-vim.cmd('colorscheme sorbet')
-vim.cmd('highlight Normal guibg=none')
+vim.cmd('colorscheme NeoSolarized')
+-- vim.cmd('highlight Normal guibg=none')
 -- vim.cmd('colorscheme darkblue')
+vim.opt.background = 'light'
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
@@ -231,6 +235,12 @@ cmp.setup({
   -- (Optional) Show source name in completion menu
   formatting = cmp_format,
 })
+
+require('nvim-treesitter.configs').setup {
+  highlight = {
+    enable = true
+  }
+}
 
 local lsp_zero = require('lsp-zero')
 
@@ -277,3 +287,23 @@ lspconfig.rubocop.setup({
     safeAutocorrect = false,
   }
 })
+
+vim.diagnostic.config({
+  virtual_text = true
+  -- virtual_text = {
+  --   current_line = true
+  -- }
+  -- As an option to try some day
+  -- virtual_lines = true
+})
+
+vim.keymap.set("n", "<space>c", function()
+  vim.ui.input({}, function(c)
+      if c and c~="" then
+        vim.cmd("noswapfile vnew")
+        vim.bo.buftype = "nofile"
+        vim.bo.bufhidden = "wipe"
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.fn.systemlist(c))
+      end
+  end)
+end)
