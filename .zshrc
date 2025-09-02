@@ -170,6 +170,14 @@ az() {
 
 OPENTOFU_VERSION=1.8.7
 
+cftofu() {
+  podman run -it --rm \
+    --workdir=/srv/workspace \
+    -v "$(pwd):/srv/workspace:Z" \
+    -e CLOUDFLARE_API_TOKEN="$CLOUDFLARE_API_TOKEN" \
+    ghcr.io/opentofu/opentofu:$OPENTOFU_VERSION "$@"
+}
+
 aztofu() {
   podman run -it --rm \
     --workdir=/srv/workspace \
@@ -194,6 +202,17 @@ azghtofu() {
     -e GITHUB_TOKEN="$GITHUB_TOKEN" \
     -e GITHUB_USERNAME="$GITHUB_USERNAME" \
     tofu-azure:$OPENTOFU_VERSION "$@"
+}
+
+kinit() {
+  podman run --rm -it \
+    -v "${HOME}/.config/krb5/krb5.conf:/etc/krb5.conf:z" \
+    -v "${HOME}/.cache/krb5:/krb5:z" \
+    kinit
+}
+
+yq() {
+  podman run --rm -i docker.io/mikefarah/yq:4.46.1 "$@"
 }
 
 bindkey -e
