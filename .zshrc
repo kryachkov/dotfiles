@@ -211,3 +211,5 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}["
 export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}●%{$reset_color%}]%{$reset_color%} "
 export BAT_THEME="Solarized (light)"
+
+eval "$(zoxide init zsh)"
