@@ -108,12 +108,12 @@ export LC_ALL="en_US.UTF-8"
 export GPG_TTY=$(tty)
 export DOCKER_BUILDKIT=1
 
-# fzf->vim (respects .gitignore)
+# fzf->vim (will respect .gitignore and dotfiles)
 fv() {
   FZF_DEFAULT_COMMAND="rg --files" fzf --bind "enter:become:nvim {1}"
 }
 
-# fzf->vim (respects .gitignore)
+# fzf->vim (all files)
 fva() {
   fzf --bind "enter:become:nvim {1}"
 }
