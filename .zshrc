@@ -225,6 +225,7 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # export PATH="/usr/local/sbin:$PATH" >> ~/.zshrc
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}["
