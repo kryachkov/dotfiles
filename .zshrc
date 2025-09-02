@@ -138,7 +138,7 @@ rfv() (
 )
 
 randompass() {
-  ruby -rsecurerandom -e 'print SecureRandom.base64(32)'
+  LC_ALL=C tr -dc \[:graph:\] < /dev/urandom | head -c64
 }
 
 randomkeepass() {
