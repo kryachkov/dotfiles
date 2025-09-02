@@ -137,6 +137,7 @@ vim.opt.cursorline = true     -- highlight current line
 vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '80,107'
+vim.opt.splitright = true
 
 -- persistent undo
 vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo'
@@ -203,6 +204,8 @@ nmap('<F7>', '<CMD>LspStop<CR>')
 imap('<F7>', '<CMD>LspStop<CR>')
 nmap('<F8>', '<CMD>LspStart<CR>')
 imap('<F8>', '<CMD>LspStart<CR>')
+nmap('<F12>', '<CMD>vertical Git<CR>')
+imap('<F12>', '<CMD>vertical Git<CR>')
 
 vim.cmd('colorscheme NeoSolarized')
 -- vim.cmd('highlight Normal guibg=none')
