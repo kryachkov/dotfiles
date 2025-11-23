@@ -152,7 +152,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*.yaml.gotmpl' },
+  pattern = { '*.yaml.gotmpl', '*.bu' },
   command = 'setfiletype yaml'
 })
 
@@ -168,7 +168,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { '*.go' },
-  command = 'set noexpandtab | set tabstop=4 | set shiftwidth=4'
+  command = 'set noexpandtab | set tabstop=4 | set shiftwidth=4 | set listchars=tab:»·,nbsp:·,trail:·,extends:>,precedes:<'
 })
 
 function map(mode, shortcut, command)
@@ -272,9 +272,7 @@ require('mason-lspconfig').setup({
   },
 })
 
-local lspconfig = require('lspconfig')
-
-lspconfig.yamlls.setup({
+vim.lsp.config('yamlls', {
   settings = {
     yaml = {
       schemas = {
@@ -285,19 +283,19 @@ lspconfig.yamlls.setup({
   }
 })
 
-lspconfig.rubocop.setup({
+vim.lsp.config('rubocop', {
   init_options = {
     safeAutocorrect = false,
   }
 })
 
 vim.diagnostic.config({
-  virtual_text = true
+  -- virtual_text = true,
   -- virtual_text = {
   --   current_line = true
   -- }
   -- As an option to try some day
-  -- virtual_lines = true
+  virtual_lines = true
 })
 
 vim.keymap.set("n", "<space>c", function()
