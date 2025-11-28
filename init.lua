@@ -11,103 +11,135 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v4.x',
-    dependencies = {
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-      { 'neovim/nvim-lspconfig' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/nvim-cmp' },
-      { 'L3MON4D3/LuaSnip' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-buffer' },
-    }
-  },
-
-  {
-    'L3MON4D3/LuaSnip',
-    dependenies = {
-      'rafamadriz/friendly-snippets',
-    }
-  },
-
-  {
-    "overcache/NeoSolarized",
-    dependencies = {
-      "tjdevries/colorbuddy.nvim",
-    }
-  },
-
-  "rstacruz/vim-closer",
-
-  'andymass/vim-matchup',
-
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  },
-
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'BurntSushi/ripgrep'
-    }
-  },
-
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup{
-        on_attach = function(bufnr)
-          local gitsigns = require('gitsigns')
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map('n', ']c', function()
-            if vim.wo.diff then
-              vim.cmd.normal({']c', bang = true})
-            else
-              gitsigns.nav_hunk('next')
-            end
-          end)
-
-          map('n', '[c', function()
-            if vim.wo.diff then
-              vim.cmd.normal({'[c', bang = true})
-            else
-              gitsigns.nav_hunk('prev')
-            end
-          end)
-        end
-      }
-    end
-  },
-
-  'tpope/vim-fugitive',
-  'tpope/vim-surround',
-  'justinmk/vim-sneak',
-  'nvim-treesitter/nvim-treesitter',
-  'wsdjeg/vim-fetch',
-}, {
-  rocks = {
-    enabled = false
-  }
-})
-
 -- <Space> is <Leader>
 vim.g.mapleader = ' '
+
+require("lazy").setup({
+  spec = {
+    {
+      "mason-org/mason-lspconfig.nvim",
+      opts = {},
+      dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+      },
+    },
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = {
+        { 'rafamadriz/friendly-snippets' },
+      },
+    },
+    {
+      'hrsh7th/nvim-cmp',
+      version = false,
+      dependencies = {
+        { 'hrsh7th/cmp-buffer' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+      },
+      opts = function()
+        local cmp = require('cmp')
+        local luasnip = require('luasnip')
+
+        return {
+          preselect = cmp.PreselectMode.None,
+          snippet = {
+            expand = function(args)
+              luasnip.lsp_expand(args.body)
+            end,
+          },
+          sources = cmp.config.sources({
+            { name = "buffer" },
+            { name = 'luasnip' },
+            { name = 'nvim_lsp' },
+          }),
+          mapping = cmp.mapping.preset.insert({
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
+            ["<Tab>"] = cmp.mapping(function(fallback)
+              if luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
+              else
+                fallback()
+              end
+            end, { "i", "s" }),
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+              if luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" }),
+          }),
+        }
+      end,
+    },
+    {
+      "overcache/NeoSolarized",
+      dependencies = {
+        "tjdevries/colorbuddy.nvim",
+      }
+    },
+    { "rstacruz/vim-closer" },
+    { "andymass/vim-matchup" },
+    { 'numToStr/Comment.nvim' },
+    {
+      'nvim-telescope/telescope.nvim',
+      tag = 'v0.1.9',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'BurntSushi/ripgrep'
+      }
+    },
+    {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup{
+          on_attach = function(bufnr)
+            local gitsigns = require('gitsigns')
+
+            local function map(mode, l, r, opts)
+              opts = opts or {}
+              opts.buffer = bufnr
+              vim.keymap.set(mode, l, r, opts)
+            end
+
+            -- Navigation
+            map('n', ']c', function()
+              if vim.wo.diff then
+                vim.cmd.normal({']c', bang = true})
+              else
+                gitsigns.nav_hunk('next')
+              end
+            end)
+
+            map('n', '[c', function()
+              if vim.wo.diff then
+                vim.cmd.normal({'[c', bang = true})
+              else
+                gitsigns.nav_hunk('prev')
+              end
+            end)
+          end
+        }
+      end
+    },
+
+    { 'tpope/vim-fugitive' },
+    { 'tpope/vim-surround' },
+    { 'justinmk/vim-sneak' },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      opts = function()
+        return {
+          highlight = true
+        }
+      end,
+    },
+    { 'wsdjeg/vim-fetch' },
+  }
+})
 
 -- Main config
 -- yank goes to clipboard
@@ -138,6 +170,7 @@ vim.opt.termguicolors = true
 vim.opt.mouse = ''
 vim.opt.colorcolumn = '80,107'
 vim.opt.splitright = true
+-- vim.opt.complete = ''
 
 -- persistent undo
 vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo'
@@ -198,12 +231,14 @@ end
 nmap('<Leader>b', '<CMD>Telescope buffers<CR>')
 nmap('<Leader>f', '<CMD>Telescope live_grep<CR>')
 nmap('<Leader>p', '<CMD>Telescope find_files<CR>')
+nmap('<F3>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
+imap('<F3>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
 nmap('<F6>', '<CMD>noh<CR>')
 imap('<F6>', '<CMD>noh<CR>')
-nmap('<F7>', '<CMD>LspStop<CR>')
-imap('<F7>', '<CMD>LspStop<CR>')
-nmap('<F8>', '<CMD>LspStart<CR>')
-imap('<F8>', '<CMD>LspStart<CR>')
+-- nmap('<F7>', '<CMD>LspStop<CR>')
+-- imap('<F7>', '<CMD>LspStop<CR>')
+-- nmap('<F8>', '<CMD>LspStart<CR>')
+-- imap('<F8>', '<CMD>LspStart<CR>')
 nmap('<F12>', '<CMD>vertical Git<CR>')
 imap('<F12>', '<CMD>vertical Git<CR>')
 
@@ -212,90 +247,45 @@ vim.cmd('colorscheme NeoSolarized')
 -- vim.cmd('colorscheme darkblue')
 vim.opt.background = 'light'
 
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-local cmp_format = require('lsp-zero').cmp_format()
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-
-  sources = cmp.config.sources({
-    { name = "buffer" },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }),
-
-  mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = cmp_action.luasnip_jump_forward(),
-    ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
-  }),
-  -- (Optional) Show source name in completion menu
-  formatting = cmp_format,
-})
-
-require('nvim-treesitter.configs').setup {
-  highlight = {
-    enable = true
-  }
-}
-
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({ buffer = bufnr })
-end)
-
-require('mason').setup({})
+-- require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'ansiblels',
-    'bashls',
-    'dockerls',
-    'lua_ls',
+    -- 'ansiblels',
+    -- 'bashls',
+    -- 'dockerls',
+    -- 'lua_ls',
     'gopls',
-    'rubocop',
     'marksman',
-    'pyright',
-    'terraformls',
-    'yamlls'
-  },
-  handlers = {
-    lsp_zero.default_setup,
+    -- 'pyright',
+    -- 'terraformls',
+    -- 'yamlls'
   },
 })
 
-vim.lsp.config('yamlls', {
-  settings = {
-    yaml = {
-      schemas = {
-        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/helmfile.json"] = "helmfile.yaml",
-        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/hchart.json"] = "Chart.yaml"
-      }
-    }
-  }
-})
-
-vim.lsp.config('rubocop', {
-  init_options = {
-    safeAutocorrect = false,
-  }
-})
+-- vim.lsp.config('yamlls', {
+--   settings = {
+--     yaml = {
+--       schemas = {
+--         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/helmfile.json"] = "helmfile.yaml",
+--         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/hchart.json"] = "Chart.yaml"
+--       }
+--     }
+--   }
+-- })
+--
+-- vim.lsp.config('rubocop', {
+--   init_options = {
+--     safeAutocorrect = false,
+--   }
+-- })
 
 vim.diagnostic.config({
-  -- virtual_text = true,
-  -- virtual_text = {
-  --   current_line = true
-  -- }
-  -- As an option to try some day
-  virtual_lines = true
+  virtual_text = {
+    current_line = true
+  }
 })
 
 vim.keymap.set("n", "<space>c", function()
