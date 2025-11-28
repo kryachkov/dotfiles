@@ -211,10 +211,6 @@ kinit() {
     kinit
 }
 
-yq() {
-  podman run --rm -i docker.io/mikefarah/yq:4.46.1 "$@"
-}
-
 bindkey -e
 bindkey \^U backward-kill-line
 
@@ -227,7 +223,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
 export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}["
-export ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}●%{$reset_color%}]%{$reset_color%} "
+export ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}●%{$reset_color%}]%{$reset_color%} "
 export BAT_THEME="Solarized (light)"
 
 eval "$(zoxide init zsh)"
