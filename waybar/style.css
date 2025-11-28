@@ -149,7 +149,9 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
+    /* default red */
+    /* background-color: #f53c3c; */
+    background-color: #2980b9;
     color: #ffffff;
 }
 
