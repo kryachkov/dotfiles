@@ -40,11 +40,11 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
-echo "Link sway config (y/n)?"
+echo "Link sway configs (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   mkdir -p $HOME/.config/sway
-  ln -nfs $ROOT_PATH/sway_config $HOME/.config/sway/config
+  ln -s $ROOT_PATH/sway_config.d $HOME/.config/sway/config.d
   echo "Done"
 fi
 
