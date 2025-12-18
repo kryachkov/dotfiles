@@ -129,18 +129,16 @@ require("lazy").setup({
     { 'tpope/vim-fugitive' },
     { 'tpope/vim-surround' },
     { 'justinmk/vim-sneak' },
-    {
-      'nvim-treesitter/nvim-treesitter',
-      opts = function()
-        return {
-          highlight = true
-        }
-      end,
-    },
+    { 'nvim-treesitter/nvim-treesitter' },
     { 'wsdjeg/vim-fetch' },
   }
 })
 
+require('nvim-treesitter.configs').setup({
+  highlight = {
+    enable = true,
+  }
+})
 -- Main config
 -- yank goes to clipboard
 if vim.loop.os_uname().sysname == "Linux" then
