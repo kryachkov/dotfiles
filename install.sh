@@ -73,6 +73,14 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link systemd user units (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  mkdir -p $HOME/.config/systemd
+  ln -s $ROOT_PATH/systemd_user_units $HOME/.config/systemd/user
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then

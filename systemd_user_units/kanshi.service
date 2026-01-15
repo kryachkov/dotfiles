@@ -1,0 +1,10 @@
+[Unit]
+Description=Output profile daemon. See https://gitlab.freedesktop.org/emersion/kanshi
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kanshi
+
+[Install]
+WantedBy=sway-session.target
