@@ -282,8 +282,9 @@ require('mason-lspconfig').setup({
 
 vim.diagnostic.config({
   virtual_text = {
-    current_line = true
-  }
+    current_line = true,
+    source = true
+  },
 })
 
 vim.keymap.set("n", "<space>c", function()
