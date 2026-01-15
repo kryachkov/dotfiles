@@ -199,7 +199,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { '*.go' },
-  command = 'set noexpandtab | set tabstop=4 | set shiftwidth=4 | set listchars=tab:»·,nbsp:·,trail:·,extends:>,precedes:<'
+  command = 'set noexpandtab | set tabstop=2 | set shiftwidth=2 | set listchars=tab:‣·,nbsp:·,trail:·,extends:>,precedes:<'
 })
 
 function map(mode, shortcut, command)
