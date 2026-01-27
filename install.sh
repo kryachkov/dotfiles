@@ -65,9 +65,7 @@ fi
 echo "Link waybar config (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  mkdir -p $HOME/.config/waybar
-  ln -nfs $ROOT_PATH/waybar/config.jsonc $HOME/.config/waybar/config.jsonc
-  ln -nfs $ROOT_PATH/waybar/style.css $HOME/.config/waybar/style.css
+  ln -s $ROOT_PATH/waybar $HOME/.config/waybar
   echo "Done"
 fi
 
