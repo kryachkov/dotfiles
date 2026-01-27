@@ -43,7 +43,7 @@ echo "Link sway configs (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   mkdir -p $HOME/.config/sway
-  ln -s $ROOT_PATH/sway_config.d $HOME/.config/sway/config.d
+  ln -s $ROOT_PATH/sway/config.d $HOME/.config/sway/config.d
   echo "Done"
 fi
 
