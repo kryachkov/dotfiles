@@ -35,8 +35,7 @@ fi
 echo "Link foot.ini (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  mkdir -p $HOME/.config/foot
-  ln -nfs $ROOT_PATH/foot.ini $HOME/.config/foot/foot.ini
+  ln -s $ROOT_PATH/foot $HOME/.config/foot
   echo "Done"
 fi
 
