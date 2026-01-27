@@ -81,6 +81,13 @@ if echo "$answer" | grep -iq "^y" ;then
   echo "Done"
 fi
 
+echo "Link kanshi config (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  ln -s $ROOT_PATH/kanshi $HOME/.config/kanshi
+  echo "Done"
+fi
+
 echo "Bootstrap vim (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
