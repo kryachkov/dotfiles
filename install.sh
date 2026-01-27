@@ -50,8 +50,7 @@ fi
 echo "Link swaylock config (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  mkdir -p $HOME/.config/swaylock
-  ln -nfs $ROOT_PATH/swaylock_config $HOME/.config/swaylock/config
+  ln -s $ROOT_PATH/swaylock $HOME/.config/swaylock
   echo "Done"
 fi
 
