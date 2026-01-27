@@ -139,6 +139,7 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   }
 })
+
 -- Main config
 -- yank goes to clipboard
 if vim.loop.os_uname().sysname == "Linux" then
@@ -259,20 +260,20 @@ require('mason-lspconfig').setup({
     'marksman',
     -- 'pyright',
     -- 'terraformls',
-    -- 'yamlls'
+    'yamlls'
   },
 })
 
--- vim.lsp.config('yamlls', {
---   settings = {
---     yaml = {
---       schemas = {
---         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/helmfile.json"] = "helmfile.yaml",
---         ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/hchart.json"] = "Chart.yaml"
---       }
---     }
---   }
--- })
+vim.lsp.config('yamlls', {
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/helmfile.json"] = "helmfile.yaml",
+        ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/hchart.json"] = "Chart.yaml"
+      }
+    }
+  }
+})
 --
 -- vim.lsp.config('rubocop', {
 --   init_options = {
