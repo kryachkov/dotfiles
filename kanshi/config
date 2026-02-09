@@ -11,3 +11,8 @@ profile {
   output 'Chimei Innolux Corporation 0x14F2 Unknown' disable
   output 'ASUSTek COMPUTER INC PG32UCDM T4LMQS073208' enable mode 3840x2160@60Hz position 0,0 scale 1.5
 }
+
+profile {
+  output 'ASUSTek COMPUTER INC PG32UCDM T4LMQS073208' enable mode 3840x2160@240Hz position 0,0 scale 1.5
+  output 'Dell Inc. DELL U2715H GH85D73O0PSS' disable
+}
