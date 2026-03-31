@@ -221,8 +221,6 @@ if which nvim > /dev/null 2>&1; then
   export MANPAGER="nvim +Man!"
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
 export ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}["
@@ -230,3 +228,6 @@ export ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}●%{$reset_color%}]%{$reset_col
 export BAT_THEME="Solarized (light)"
 
 eval "$(zoxide init zsh)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
