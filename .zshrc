@@ -213,6 +213,25 @@ kinit() {
     kinit
 }
 
+wkp() {
+  watch -n1 kubectl get pods -n$1
+}
+
+hypoclaude() {
+  local provided_path="${1:?Usage: hypoclaude <path>}"
+  local resolved_path="${provided_path:A}"
+  local basename="${resolved_path:t}"
+
+  [[ -d "$resolved_path" ]] || { echo "hypoclaude: not a directory: $resolved_path" >&2; return 1; }
+
+  podman run --rm -it \
+    -v"${resolved_path}:/workspaces/${basename}:z" \
+    -v"${HYPOCLAUDE_HOME_DIR}:/home/claude:z" \
+    --userns=keep-id:uid=1000,gid=1000 \
+    --workdir "/workspaces/${basename}" \
+    localhost/hypoclaude
+}
+
 bindkey -e
 bindkey \^U backward-kill-line
 
