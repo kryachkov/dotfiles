@@ -107,7 +107,6 @@ fi
 DOTFILES_ROOT=$HOME/.config/dotfiles
 [ -f $DOTFILES_ROOT/.env.secrets ] && source $DOTFILES_ROOT/.env.secrets
 
-export LC_ALL="en_US.UTF-8"
 export GPG_TTY=$(tty)
 export DOCKER_BUILDKIT=1
 
