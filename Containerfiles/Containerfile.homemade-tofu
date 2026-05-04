@@ -1,4 +1,4 @@
-FROM ghcr.io/opentofu/opentofu:1.10-minimal AS tofu
+FROM ghcr.io/opentofu/opentofu:1.11.4-minimal AS tofu
 
 FROM alpine:3.20
 
