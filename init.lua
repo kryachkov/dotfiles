@@ -187,7 +187,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*.yaml.gotmpl', '*.bu' },
+  pattern = { '*.yaml.gotmpl', '*.bu', '*.yaml.j2' },
   command = 'setfiletype yaml'
 })
 
