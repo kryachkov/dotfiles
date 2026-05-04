@@ -36,6 +36,7 @@
 
 
 [core]
+    quotePath = false
     pager = delta
 
 [interactive]
