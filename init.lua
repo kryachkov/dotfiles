@@ -136,6 +136,7 @@ require("lazy").setup({
     },
     { 'nvim-treesitter/nvim-treesitter' },
     { 'wsdjeg/vim-fetch' },
+    { 'slim-template/vim-slim' }
   }
 })
 
