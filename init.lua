@@ -128,7 +128,12 @@ require("lazy").setup({
 
     { 'tpope/vim-fugitive' },
     { 'tpope/vim-surround' },
-    { 'justinmk/vim-sneak' },
+    {
+      'justinmk/vim-sneak',
+      init = function()
+        vim.g["sneak#label"] = 1
+      end
+    },
     { 'nvim-treesitter/nvim-treesitter' },
     { 'wsdjeg/vim-fetch' },
   }
@@ -174,8 +179,6 @@ vim.opt.splitright = true
 -- persistent undo
 vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo'
 vim.opt.undofile = true
-
--- vim.g.sneak = 1
 
 -- Auto-removal of trailing whitespaces on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
