@@ -214,7 +214,7 @@ kinit() {
 }
 
 wkp() {
-  watch -n1 kubectl get pods -n$1
+  watch -n1 kubectl get pods $1
 }
 
 hypoclaude() {
@@ -229,7 +229,7 @@ hypoclaude() {
     -v"${HYPOCLAUDE_HOME_DIR}:/home/claude:z" \
     --userns=keep-id:uid=1000,gid=1000 \
     --workdir "/workspaces/${basename}" \
-    localhost/hypoclaude
+    localhost/hypoclaude:latest
 }
 
 bindkey -e
