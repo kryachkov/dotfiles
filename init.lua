@@ -134,15 +134,14 @@ require("lazy").setup({
         vim.g["sneak#label"] = 1
       end
     },
-    { 'nvim-treesitter/nvim-treesitter' },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      branch = 'main',
+      lazy = false,
+      build = ':TSUpdate',
+    },
     { 'wsdjeg/vim-fetch' },
     { 'slim-template/vim-slim' }
-  }
-})
-
-require('nvim-treesitter.configs').setup({
-  highlight = {
-    enable = true,
   }
 })
 
@@ -195,6 +194,11 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { 'seed_jenkins', 'Jenkinsfile*' },
   command = 'setfiletype groovy'
+})
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*.slim' },
+  command = 'setfiletype slim'
 })
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
