@@ -1,10 +1,6 @@
 [diff "sopsdiffer"]
 	textconv = sops -d
-# Moved to ~/.config/git/config
-# [user]
-#   name =
-#   email =
-#   signingkey =
+
 [merge]
   tool = nvimdiff
 [mergetool]
@@ -50,4 +46,7 @@
 [merge]
     conflictstyle = zdiff3
 [credential]
-  helper = store --file ~/.git-credentials
+  helper = store --file ~/.config/git/credentials
+
+[include]
+  path = ~/.config/git/local

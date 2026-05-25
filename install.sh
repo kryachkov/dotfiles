@@ -5,7 +5,8 @@ ROOT_PATH=`pwd -P`
 echo "Link .gitconfig (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  ln -nfs $ROOT_PATH/.gitconfig $HOME/.gitconfig
+  mkdir -p $HOME/.config/git
+  ln -nfs $ROOT_PATH/.gitconfig $HOME/.config/git/config
   echo "Done"
 fi
 
