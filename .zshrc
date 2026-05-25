@@ -229,6 +229,8 @@ hypoclaude() {
     -v"${HYPOCLAUDE_HOME_DIR}:/home/claude:z" \
     --userns=keep-id:uid=1000,gid=1000 \
     --workdir "/workspaces/${basename}" \
+    --read-only \
+    --read-only-tmpfs \
     localhost/hypoclaude:latest
 }
 
