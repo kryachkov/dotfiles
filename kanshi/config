@@ -18,5 +18,5 @@ profile {
 }
 
 profile {
-  output 'Samsung Display Corp. 0x41B3 0x0000FFA1' enable mode 2880x1800@120Hz position 0,0 scale 2
+  output 'Samsung Display Corp. 0x41B3 0x0000FFA1' enable mode 2880x1800@120Hz position 0,0 scale 1.5
 }
