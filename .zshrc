@@ -179,10 +179,10 @@ kdn() {
 az() {
   podman run -it --rm \
     -v "${HOME}/.azure:/root/.azure:Z" \
-    mcr.microsoft.com/azure-cli:2.64.0 az "$@"
+    mcr.microsoft.com/azure-cli:2.89.1 az "$@"
 }
 
-OPENTOFU_VERSION=1.8.7
+OPENTOFU_VERSION=1.11.4
 
 cftofu() {
   podman run -it --rm \
@@ -197,7 +197,7 @@ aztofu() {
     --workdir=/srv/workspace \
     -v "${HOME}/.azure:/root/.azure:Z" \
     -v "$(pwd):/srv/workspace:Z" \
-    tofu-azure:$OPENTOFU_VERSION "$@"
+    localhost/tofu-azure:$OPENTOFU_VERSION "$@"
 }
 
 ggtofu() {
@@ -215,14 +215,14 @@ azghtofu() {
     -v "$(pwd):/srv/workspace:Z" \
     -e GITHUB_TOKEN="$GITHUB_TOKEN" \
     -e GITHUB_USERNAME="$GITHUB_USERNAME" \
-    tofu-azure:$OPENTOFU_VERSION "$@"
+    localhost/tofu-azure:$OPENTOFU_VERSION "$@"
 }
 
 kinit() {
   podman run --rm -it \
     -v "${HOME}/.config/krb5/krb5.conf:/etc/krb5.conf:z" \
     -v "${HOME}/.cache/krb5:/krb5:z" \
-    kinit
+    localhost/kinit
 }
 
 wkp() {
