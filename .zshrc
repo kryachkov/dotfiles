@@ -267,6 +267,21 @@ hypoclaude() {
     localhost/hypoclaude:latest
 }
 
+rdp() {
+  sdl-freerdp -clipboard /size:1920x1080 /v:"$1"
+}
+
+promtool() {
+  podman run --rm \
+    --entrypoint /bin/promtool \
+    docker.io/prom/prometheus "$@"
+}
+
+alias butane='podman run --rm --interactive         \
+              --security-opt label=disable          \
+              --volume "${PWD}:/pwd" --workdir /pwd \
+              quay.io/coreos/butane:release'
+
 bindkey -e
 bindkey \^U backward-kill-line
 
