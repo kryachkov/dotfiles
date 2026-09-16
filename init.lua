@@ -213,6 +213,11 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   command = 'set noexpandtab | set tabstop=2 | set shiftwidth=2 | set listchars=tab:‣·,nbsp:·,trail:·,extends:>,precedes:<'
 })
 
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { 'user-data' },
+  command = 'setfiletype yaml'
+})
+
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
