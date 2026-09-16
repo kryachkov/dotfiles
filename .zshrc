@@ -161,6 +161,16 @@ alias ncmpd="ncmpcpp"
 alias gswma="git switch master"
 alias calc="bc -l"
 
+alias ncls="nmcli con show"
+alias nclsa="nmcli con show --active"
+alias ncdwls="nmcli device wifi list --rescan yes"
+ncu() {
+  nmcli con up $1
+}
+ncd() {
+  nmcli con down $1
+}
+
 kdn() {
   kubectl debug nodes/$(kubectl get nodes --no-headers | cut -d" " -f1 | sort -R | head -n1) \
     -it --image fedora
