@@ -273,11 +273,11 @@ require('mason-lspconfig').setup({
     -- 'bashls',
     -- 'dockerls',
     -- 'lua_ls',
-    'gopls',
-    'marksman',
+    -- 'gopls',
+    -- 'marksman',
     -- 'pyright',
     -- 'terraformls',
-    'yamlls'
+    -- 'yamlls'
   },
 })
 
