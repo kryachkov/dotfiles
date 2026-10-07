@@ -268,7 +268,14 @@ cclaude() {
 }
 
 rdp() {
-  sdl-freerdp -clipboard /size:1920x1080 /v:"$1"
+  sdl-freerdp \
+    -clipboard \
+    /bpp:32 \
+    /gfx:AVC444 \
+    /network:lan \
+    +fonts \
+    /dynamic-resolution \
+    /v:"$1"
 }
 
 promtool() {
