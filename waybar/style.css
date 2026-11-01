@@ -1,5 +1,5 @@
 * {
-    font-family: 'Terminus', 'Roboto Mono', 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-family: 'Noto Sans Mono', 'Font Awesome 7 Free', 'Font Awesome 7 Brands', monospace;
     font-size: 14px;
 }
 
@@ -62,7 +62,7 @@ button:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.active {
     background-color: #64727D;
     box-shadow: inset 0 -3px #ffffff;
 }
@@ -149,8 +149,6 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-    /* default red */
-    /* background-color: #f53c3c; */
     background-color: #2980b9;
     color: #ffffff;
 }
@@ -229,7 +227,6 @@ label:focus {
 
 #temperature {
     background-color: #2ecc71;
-    color: #000000;
 }
 
 #temperature.critical {
