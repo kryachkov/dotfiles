@@ -19,4 +19,5 @@ profile {
 profile {
   output 'Samsung Display Corp. 0x41B3 *' disable
   output 'ASUSTek COMPUTER INC PG32UCDM *' enable mode 3840x2160@240Hz position 2880,0 scale 1.5
+  exec swaymsg 'output "ASUSTek COMPUTER INC PG32UCDM T4LMQS073208" render_bit_depth 10, output "ASUSTek COMPUTER INC PG32UCDM T4LMQS073208" hdr on'
 }
