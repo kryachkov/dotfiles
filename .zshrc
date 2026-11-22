@@ -75,6 +75,9 @@ HIST_STAMPS="%F %T %Z"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git kubectl)
 
+# fix for git prompt not rendered in minimal theme
+zstyle ':omz:alpha:lib:git' async-prompt force
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
