@@ -27,6 +27,7 @@
         // "sway/language",
         "battery",
         "clock",
+        "clock#utc",
         "tray"
     ],
     // Modules configuration
@@ -132,7 +133,7 @@
       "timezone": "",
       "locale": "sv_SE.utf8",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format": "{:%Y-%m-%d %H:%M}",
+      "format": "Local: {:%Y-%m-%d %H:%M}",
       "format-alt": "{:%Y-%m-%d}",
       "calendar": {
         "weeks-pos": "left",
@@ -140,6 +141,10 @@
           "weeks": "v{:%W}"
         }
       }
+    },
+    "clock#utc": {
+      "timezone": "Etc/UTC",
+      "format": "UTC: {:%H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
